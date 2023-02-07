@@ -1,0 +1,176 @@
+# 補完のため
+[[plugins]]
+ repo = 'Shougo/ddc.vim'
+ on_event = 'InsertEnter'
+ depends = ['denops.vim']
+ hook_source = '''
+ call ddc#custom#patch_global('ui', 'pum')
+ call ddc#custom#patch_global('sources', ['nvim-lsp', 'around', 'vsnip'])
+ call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \ 'matchers': ['matcher_head'],
+      \ 'sorters': ['sorter_rank'],
+      \ 'converters': ['converter_remove_overlap'],
+      \ },
+      \ 'around': { 'mark': 'Around' },
+      \ 'nvim-lsp': {
+      \ 'mark': 'LSP',
+      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \ },
+      \ })
+
+ call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+ inoremap <silent><expr> <TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#manual_complete()
+ inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+ inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+ inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+ inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+ 
+ " 補完表示中はEnterで決定
+ inoremap <silent><expr> <CR>
+  \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
+  \ '<S-CR>'
+
+ " 補完表示中に矢印入力で補完非表示
+ inoremap <silent><expr> <Up>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' :
+  \ '<Up>'
+ inoremap <silent><expr> <Down>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' :
+  \ '<Down>'
+ inoremap <silent><expr> <Left>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' :
+  \ '<Left>'
+ inoremap <silent><expr> <Right>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' :
+  \ '<Right>'
+
+ call ddc#enable()
+'''
+
+# カーソル周辺の既出単語を補完するsource
+[[plugins]]
+ repo = 'Shougo/ddc-around'
+ on_source = 'ddc.vim'
+
+# 入力中の単語を補完の対象にするfilter
+[[plugins]]
+ repo = 'Shougo/ddc-matcher_head'
+ on_source = 'ddc.vim'
+
+# 補完候補を適切にソートするfilter
+[[plugins]]
+ repo = 'Shougo/ddc-sorter_rank'
+ on_source = 'ddc.vim'
+
+# 補完候補の重複を防ぐためのfilter
+[[plugins]]
+ repo = 'Shougo/ddc-converter_remove_overlap'
+ on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'ddc.vim'
+
+# LSPの設定
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+on_event = 'BufEnter'
+hook_source = '''
+lua << EOF
+local nvim_lsp = require('lspconfig')
+-- 変数情報を表示
+vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+-- 定義ジャンプ
+vim.keymap.set('n', 'J', '<cmd>lua vim.lsp.buf.definition()<CR>')
+-- フォーマット
+vim.keymap.set('n', 'F', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+
+local servers = { 'solargraph', 'tsserver', 'intelephense', 'marksman' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    flags = {
+      debounce_text_changes = 150,
+      },
+    settings = {
+      solargraph = {
+        diagnostics = false
+      }
+    }
+  }
+end
+EOF
+'''
+
+[[plugins]]
+# LSPのインストールが可能
+# :Mason でできる
+repo = 'williamboman/mason.nvim'
+on_source = 'nvim-lspconfig'
+hook_source = '''
+lua << EOF
+local mason = require('mason')
+mason.setup({
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗",
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }
+})
+EOF
+'''
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+# ここまで
+
+# 括弧の補完
+#[[plugins]]
+#repo = 'windwp/nvim-autopairs'
+#if = 'has("nvim")'
+#on_lua = 'nvim-autopairs'
+#on_event = 'InsertEnter'
+#hook_source = 'lua require("nvim-autopairs").setup {}'
+
+# vimのコマンド補完
+[[plugins]]
+# tabキーで補完
+repo = 'hrsh7th/cmp-cmdline'
+
+# 呼び出した関数などのヘルプの処理
+[[plugins]]
+ repo = 'matsui54/denops-signature_help'
+ on_source = 'ddc.vim'
+ hook_source = '''
+ call signature_help#enable()
+'''
+# denops-signature_helpを表示 
+[[plugins]]
+ repo = 'matsui54/denops-popup-preview.vim'
+ on_source = 'ddc.vim'
+ hook_source = '''
+ call popup_preview#enable()
+'''
+
+# ポップアップを表示する
+[[plugins]]
+repo = 'Shougo/pum.vim'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
+hook_add = '''
+ call pum#set_option('max_width', 50)
+'''
+

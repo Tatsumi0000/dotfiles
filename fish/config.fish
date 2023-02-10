@@ -11,6 +11,8 @@ set -x GOPATH $HOME/dev
 set -x PATH $PATH $GOPATH/bin
 # nodebrewの設定
 set -x PATH $HOME/.nodebrew/current/bin $PATH
+# rbenvの設定
+eval "$(rbenv init -)"
 
 # ctrl+rで履歴を検索
 function fish_user_key_bindings

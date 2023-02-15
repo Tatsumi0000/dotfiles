@@ -5,7 +5,7 @@ opt.termguicolors = true -- 24bitカラーを有効
 opt.title = true -- 編集中のファイル名表示
 -- 文字コードを自動判別して開く
 opt.encoding = 'utf-8'
-opt.fileencodings = 'iso-2022-jp,ucs-bom,sjis,utf-8,euc-jp,cp932,default,latin1'
+opt.fileencodings = 'utf-8,iso-2022-jp,ucs-bom,sjis,euc-jp,cp932,default,latin1'
 -- modifableをONにする
 opt.modifiable = true
 opt.write = true
@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
   }
   -- エディタにgitの差分を表示
   use { 'airblade/vim-gitgutter' }
+  use { 'ruanyl/vim-gh-line' }
   
   -- 括弧を虹色
   use { 'luochen1990/rainbow' }
@@ -77,9 +78,15 @@ return require('packer').startup(function(use)
   use { 'windwp/nvim-autopairs' }
 
   -- lsp関連
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
+  use { 'neovim/nvim-lspconfig' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-vsnip'}
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/vim-vsnip' }
+  use { 'williamboman/mason.nvim' }
+  use { 'williamboman/mason-lspconfig.nvim' }
+  
+  use { 'tpope/vim-endwise' }
 
   require 'plugins/appearance'
   require 'plugins/telescope'

@@ -9,11 +9,11 @@ end })
 local cmp = require("cmp")
 cmp.setup({
     preselect = cmp.PreselectMode.None,
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
+      snippet = {
+        expand = function(args)
+          vim.fn["vsnip#anonymous"](args.body)
+      end,
+  },  
   sources = {
     { name = "nvim_lsp" },
     { name = "vsnip" },
@@ -40,8 +40,6 @@ cmp.setup({
 vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- 定義ジャンプ
 vim.keymap.set('n', 'J', '<cmd>lua vim.lsp.buf.definition()<CR>')
--- フォーマット
-vim.keymap.set('n', 'F', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 -- 変数を使っている箇所を表示
 vim.keymap.set('n', 'V', '<cmd>lua vim.lsp.buf.references()<CR>')
 -- 括弧を自動補完

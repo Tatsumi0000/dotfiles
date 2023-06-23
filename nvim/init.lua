@@ -20,6 +20,17 @@ if vim.fn.has('persistent_undo') == 1 then
   opt.undofile = true
 end
 
+-- aleの設定
+vim.g.ale_fixers = {
+      javascript = { 'prettier' },
+      vue = { 'prettier' },
+      }
+vim.g.ale_fix_on_save = 1
+vim.g.ale_javascript_prettier_use_local_config = 1
+
+vim.opt.termguicolors = true
+require("bufferline").setup{}
+
 -- 自動でPakcerインストールをチェック
 local ensure_packer = function()
   local fn = vim.fn
@@ -85,9 +96,12 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/vim-vsnip' }
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
-  
+  -- buffersをタブみたいに表示する
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use { 'github/copilot.vim'}
   use { 'tpope/vim-endwise' }
-
+  -- 保存時に整形するプラグイン
+  use { 'dense-analysis/ale' }
   require 'plugins/appearance'
   require 'plugins/telescope'
   require 'plugins/fern'

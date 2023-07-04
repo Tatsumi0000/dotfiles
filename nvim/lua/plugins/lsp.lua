@@ -1,4 +1,9 @@
-require('mason').setup()
+require('mason').setup {
+    ui = {
+    check_outdated_packages_on_open = false,
+    border = 'single',
+  },
+}
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
       capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -42,5 +47,7 @@ vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'J', '<cmd>lua vim.lsp.buf.definition()<CR>')
 -- 変数を使っている箇所を表示
 vim.keymap.set('n', 'V', '<cmd>lua vim.lsp.buf.references()<CR>')
+-- 警告をホバーみたいに表示
+vim.keymap.set('n', 'e', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- 括弧を自動補完
 require("nvim-autopairs").setup {}

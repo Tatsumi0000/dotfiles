@@ -13,23 +13,16 @@ opt.write = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true -- カーソルハイライト
 opt.whichwrap = 'b,s,h,l,<,>,[,]' -- 左右のキーで行をまたぐ
-
+vim.opt.swapfile = false -- swapファイルを作らない
 -- undoの永続化
 if vim.fn.has('persistent_undo') == 1 then
   opt.undodir = vim.fn.expand('~/.config/nvim/undo')
   opt.undofile = true
 end
 
--- aleの設定
-vim.g.ale_fixers = {
-      javascript = { 'prettier' },
-      vue = { 'prettier' },
-      }
-vim.g.ale_fix_on_save = 1
-vim.g.ale_javascript_prettier_use_local_config = 1
-
-vim.opt.termguicolors = true
-require("bufferline").setup{}
+opt.termguicolors = true
+vim.g.mapleader = " " -- leaderキーをSpaceに割当
+vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true } ) -- スペース+aで全選択
 
 -- 自動でPakcerインストールをチェック
 local ensure_packer = function()
@@ -46,7 +39,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
-  use { 'wbthomason/packer.nvim', opt = true }
+  use { 'wbthomason/packer.nvim' }
 
   -- fern関連
   use { 'lambdalisue/fern.vim' }
@@ -68,6 +61,13 @@ return require('packer').startup(function(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate'
   }
+  -- コメントアウト
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+	require('Comment').setup()
+      end
+   }
 
   -- color-scheme
   use { 'folke/tokyonight.nvim' }
@@ -77,8 +77,10 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  -- エディタにgitの差分を表示
-  use { 'airblade/vim-gitgutter' }
+
+  -- エディタにgitの差分や行単位の変更を表示
+  use { 'lewis6991/gitsigns.nvim' }
+  -- コードからGitHubに飛ぶ
   use { 'ruanyl/vim-gh-line' }
   
   -- 括弧を虹色
@@ -97,15 +99,31 @@ return require('packer').startup(function(use)
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
   -- buffersをタブみたいに表示する
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-  use { 'github/copilot.vim'}
+  use {
+    'akinsho/bufferline.nvim',
+    tag = "*",
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = function()
+	require("bufferline").setup{}
+    end
+    }
+  use { "github/copilot.vim" }
   use { 'tpope/vim-endwise' }
   -- 保存時に整形するプラグイン
   use { 'dense-analysis/ale' }
+  -- aleの設定
+  vim.g.ale_fixers = {
+	  javascript = { 'prettier' },
+	  vue = { 'prettier' },
+  }
+  vim.g.ale_fix_on_save = 1
+  vim.g.ale_javascript_prettier_use_local_config = 1
+
   require 'plugins/appearance'
   require 'plugins/telescope'
   require 'plugins/fern'
   require 'plugins/lsp'
+  require 'plugins/gitsigns'
 
   if packer_bootstrap then
     require('packer').sync()

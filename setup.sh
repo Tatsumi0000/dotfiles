@@ -8,3 +8,4 @@ ln -sf ${CURRENT_DIR}/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/
 ln -sf ${CURRENT_DIR}/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
 ln -sf ${CURRENT_DIR}/fish/config.fish ~/.config/fish/config.fish
 ln -sf ${CURRENT_DIR}/tmux/.tmux.conf ~/.tmux.conf
+ln -sf ${CURRENT_DIR}/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml

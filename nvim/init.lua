@@ -20,7 +20,6 @@ if vim.fn.has("persistent_undo") == 1 then
 	opt.undofile = true
 end
 
-opt.termguicolors = true
 vim.g.mapleader = " " -- leaderキーをSpaceに割当
 vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true }) -- スペース+aで全選択
 
@@ -68,10 +67,19 @@ return require("packer").startup(function(use)
 			require("Comment").setup()
 		end,
 	})
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
 	-- color-scheme
-	use({ "folke/tokyonight.nvim" })
-	vim.cmd([[colorscheme tokyonight]])
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			require("tokyonight").setup({
+				vim.cmd([[colorscheme tokyonight]]),
+				style = "storm",
+			})
+		end,
+	})
+
 	-- ステータスバーをいい感じに
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -95,6 +103,8 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/nvim-cmp" })
 	use({ "hrsh7th/cmp-vsnip" })
 	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-buffer" })
 	use({ "hrsh7th/vim-vsnip" })
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })

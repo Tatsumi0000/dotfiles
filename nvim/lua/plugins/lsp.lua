@@ -24,6 +24,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
+		{ name = "path" },
 	},
 	-- 横幅をMAXで20文字にする
 	formatting = {
@@ -53,3 +54,17 @@ vim.keymap.set("n", "V", "<cmd>lua vim.lsp.buf.references()<CR>")
 vim.keymap.set("n", "e", "<cmd>lua vim.diagnostic.open_float()<CR>")
 -- 括弧を自動補完
 require("nvim-autopairs").setup({})
+
+require('nvim-treesitter.configs').setup {
+  -- Install the parsers for the languages you want to comment in
+  -- Here are the supported languages:
+  ensure_installed = {
+    'astro', 'css', 'glimmer', 'graphql', 'html', 'javascript',
+    'lua', 'nix', 'php', 'python', 'scss', 'svelte', 'tsx', 'twig',
+    'typescript', 'vim', 'vue',
+  },
+
+  context_commentstring = {
+    enable = true,
+  },
+}

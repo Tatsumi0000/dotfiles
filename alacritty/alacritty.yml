@@ -3,8 +3,8 @@ window:
   padding:
     x: 4
     y: 4
-
-
+  option_as_alt:
+    OnlyLeft
 # フォント設定（サイズのみ）
 font:
   normal:

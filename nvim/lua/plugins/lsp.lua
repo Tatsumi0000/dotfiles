@@ -77,7 +77,7 @@ formatter.setup({
     lua = {
       require("formatter.filetypes.lua").stylua,
     },
-    -- 基本的には
+    -- 上記以外
     ["*"] = {
       require("formatter.filetypes.any").remove_trailing_whitespace,
       -- https://github.com/mhartington/formatter.nvim/issues/260#issuecomment-1676039290

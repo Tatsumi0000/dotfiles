@@ -6,6 +6,7 @@ ln -sf ${CURRENT_DIR}/nvim/lua/plugins/appearance.lua ~/.config/nvim/lua/plugins
 ln -sf ${CURRENT_DIR}/nvim/lua/plugins/fern.lua ~/.config/nvim/lua/plugins/fern.lua
 ln -sf ${CURRENT_DIR}/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/telescope.lua
 ln -sf ${CURRENT_DIR}/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
+ln -sf ${CURRENT_DIR}/nvim/lua/plugins/theme.lua ~/.config/nvim/lua/plugins/theme.lua
 ln -sf ${CURRENT_DIR}/fish/config.fish ~/.config/fish/config.fish
 ln -sf ${CURRENT_DIR}/zsh/.zshrc ~/.zshrc
 ln -sf ${CURRENT_DIR}/tmux/.tmux.conf ~/.tmux.conf

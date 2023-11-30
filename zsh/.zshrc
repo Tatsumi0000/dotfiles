@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="wezm"
+ZSH_THEME="amuse"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -75,6 +75,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   docker-compose
+  kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -143,6 +144,8 @@ function select-history() {
 zle -N select-history
 bindkey '^r' select-history
 
+alias k='kubectl'
+alias kz='kustomize'
 # ctrl + bでlogを見ながらbrannch切り替え
 # https://zenn.dev/yamo/articles/5c90852c9c64ab
 function select-git-switch() {
@@ -160,3 +163,7 @@ function select-git-switch() {
 zle -N select-git-switch
 bindkey "^b" select-git-switch
 
+# kube_ps1(クラスタとnamespaceを表示するやつ)の設定
+PROMPT='$(kube_ps1)'$PROMPT
+# kubectlの補完
+source <(kubectl completion zsh)

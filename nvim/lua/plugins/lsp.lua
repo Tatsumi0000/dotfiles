@@ -4,30 +4,62 @@ require("mason").setup({
 		border = "single",
 	},
 })
-
+local lsp_config = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({
-	function(server)
-		require("lspconfig")[server].setup({
-			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				if client.supports_method("textDocument/formatting") then
-					-- カーソル下の変数をハイライト
-					vim.cmd([[
-          set updatetime=500
-          augroup lsp_document_highlight
-            autocmd!
-            autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-          augroup END
-        ]])
-				end
+	function(server_name)
+		local server_config = { capabilities = capabilities }
+		local on_attach = function(client, bufnr)
+			if client.supports_method("textDocument/documentHighlight") then
+				local lsp_document_highlight = vim.api.nvim_create_augroup("lsp_document_highlight", {})
+				-- ハイライトするまでの時間
+				vim.opt.updatetime = 500
+				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+					group = lsp_document_highlight,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.document_highlight()
+					end,
+				})
+				vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+					group = lsp_document_highlight,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.clear_references()
+					end,
+				})
+			end
+		end
+		if server_name == "volar" then
+			server_config.filetypes = { "typescript", "javascript", "vue", "json" }
+			server_config.settings = {
+				vue = {
+					complete = {
+						casing = {
+							tags = "kebab",
+						},
+					},
+				},
+			}
+		end
+		server_config.on_attach = on_attach
+		lsp_config[server_name].setup(server_config)
+		-- https://github.com/apple/sourcekit-lsp/blob/main/Editors/README.md#neovim-08-and-above
+		lsp_config.sourcekit.setup({
+
+			cmd = { "sourcekit-lsp" },
+			filetypes = { "swift" },
+			-- プロジェクトのルートを.gitで判断
+			root_dir = function(fname)
+				return lsp_config.util.find_git_ancestor(fname)
 			end,
 		})
 	end,
 })
+-- vim.lsp.set_log_level("debug")
+
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 cmp.setup({
@@ -45,10 +77,17 @@ cmp.setup({
 	},
 	formatting = {
 		format = lspkind.cmp_format({
-			mode = "symbol",
+			mode = "text_symbol",
 			maxwidth = 50,
 			ellipsis_char = "...",
 			before = function(entry, vim_item)
+				vim_item.menu = ({
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[LuaSnip]",
+					nvim_lua = "[Lua]",
+					latex_symbols = "[Latex]",
+				})[entry.source.name]
 				return vim_item
 			end,
 		}),
@@ -157,6 +196,7 @@ require("nvim-treesitter.configs").setup({
 		"ruby",
 		"rust",
 		"scss",
+    "swift",
 		"svelte",
 		"tsx",
 		"twig",
@@ -164,21 +204,12 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"vue",
 	},
-
-	context_commentstring = {
-		enable = true,
-	},
 	endwise = {
 		enable = true,
 	},
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
-	},
-	yati = {
-		enable = true,
-		default_lazy = true,
-		default_fallback = "auto",
 	},
 	indent = {
 		enable = true,

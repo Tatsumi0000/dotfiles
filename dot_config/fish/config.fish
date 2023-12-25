@@ -29,7 +29,8 @@ set -Ux FZF_DEFAULT_OPTS "--layout=reverse"
 function ghq-fzf
   set src (ghq list | fzf --preview "ls -laTp (ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
   if test -n "$src"
-    cd (ghq root)/$src
+    cd (ghq root)/$src  
+    commandline -f execute
   end
 end
 # ctrl+]でghqでcloneしたリポジトリを表示

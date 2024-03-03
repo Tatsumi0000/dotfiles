@@ -1,18 +1,30 @@
 require("base")
 local theme = require("plugins/theme")
 -- プラグインたちを追加
-if 0 == 0 and 1 >= 2 then
-	print("hello")
-end
 local plugins = {
 	-- color-scheme
 	theme,
 
 	-- fern関連
-	{ "lambdalisue/fern.vim" },
 	{ "lambdalisue/fern-git-status.vim" },
-	{ "lambdalisue/nerdfont.vim" },
-	{ "lambdalisue/fern-renderer-nerdfont.vim" },
+	{
+		"lambdalisue/fern.vim",
+		config = function()
+			-- ctrl + n でfernを開く
+			vim.keymap.set("n", "<C-n>", ":Fern . -reveal=% -drawer -toggle -width=30<CR>")
+			vim.g["fern#default_hidden"] = true -- 隠しファイルを表示
+		end,
+		dependencies = {
+			{ "lambdalisue/nerdfont.vim" },
+			{
+				"lambdalisue/fern-renderer-nerdfont.vim",
+				config = function()
+					-- アイコンフォントを使う
+					vim.g["fern#renderer"] = "nerdfont"
+				end,
+			},
+		},
+	},
 	-- あいまい検索
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
@@ -71,6 +83,12 @@ local plugins = {
 	{ "onsails/lspkind.nvim" },
 	{ "mfussenegger/nvim-lint" },
 	{ "mhartington/formatter.nvim" },
+	{
+		"dense-analysis/ale",
+		config = function()
+			require("plugins/ale")
+		end,
+	},
 	-- tree-sitterのインデントを良い感じに
 	{ "yioneko/nvim-yati", version = "*", dependencies = "nvim-treesitter/nvim-treesitter" },
 	{ "tpope/vim-rails" },
@@ -118,7 +136,23 @@ local plugins = {
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
-			require("bufferline").setup({})
+			require("bufferline").setup({
+				options = {
+					mode = "buffers",
+					separator_style = "slant",
+				},
+				highlights = {
+					separator = {
+						guifg = "#15161E",
+					},
+					separator_visible = {
+						guifg = "#15161E",
+					},
+					separator_selected = {
+						guifg = "#15161E",
+					},
+				},
+			})
 		end,
 	},
 
@@ -168,9 +202,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup(plugins, lazy_opts)
 require("plugins/appearance")
 require("plugins/telescope")
-require("plugins/fern")
 require("plugins/lsp")
 require("plugins/gitsigns")
+require("lazy").setup(plugins, lazy_opts)

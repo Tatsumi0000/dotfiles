@@ -1,6 +1,6 @@
 local opt = vim.opt
 -- 全体設定
-vim.api.nvim_command("language en_US") -- nvim自体を英語環境にする
+-- vim.api.nvim_command("language en_US") -- nvim自体を英語環境にする
 opt.number = true -- 行数表示
 -- opt.relativenumber = true -- 相対行数表示
 opt.termguicolors = true -- 24bitカラーを有効
@@ -8,6 +8,7 @@ opt.title = true -- 編集中のファイル名表示
 -- 文字コードを自動判別して開く
 opt.encoding = "utf-8"
 opt.fileencodings = "utf-8,iso-2022-jp,ucs-bom,sjis,euc-jp,cp932,default,latin1"
+-- modifableをONにする
 -- modifableをONにする
 opt.modifiable = true
 opt.shiftwidth = 0

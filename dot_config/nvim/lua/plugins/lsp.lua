@@ -32,9 +32,12 @@ mason_lspconfig.setup_handlers({
 				})
 			end
 		end
-		if server_name == "volar" then
-			server_config.filetypes = { "typescript", "javascript", "vue", "json" }
-		end
+		-- if server_name == "volar" then
+		-- 	server_config.filetypes = { "typescript", "javascript", "vue", "json" }
+		-- end
+		-- if server_name == "tsserver" then
+		-- 	server_config.root_dir = lsp_config.util.root_pattern("package.json")
+		-- end
 		server_config.on_attach = on_attach
 		lsp_config[server_name].setup(server_config)
 		-- https://github.com/apple/sourcekit-lsp/blob/main/Editors/README.md#neovim-08-and-above
@@ -95,44 +98,44 @@ cmp.setup({
 	},
 })
 -- formatterの設定
-local formatter = require("formatter")
-formatter.setup({
-	filetype = {
-		javascript = {
-			require("formatter.filetypes.javascript").prettier,
-		},
-		javascriptreact = {
-			require("formatter.filetypes.javascriptreact").prettier,
-		},
-		typescript = {
-			require("formatter.filetypes.typescript").prettier,
-		},
-		typescriptreact = {
-			require("formatter.filetypes.typescriptreact").prettier,
-		},
-		vue = {
-			require("formatter.filetypes.vue").prettier,
-		},
-		css = {
-			require("formatter.defaults").prettier,
-		},
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-		},
-		-- 上記以外
-		["*"] = {
-			require("formatter.filetypes.any").remove_trailing_whitespace,
-			-- https://github.com/mhartington/formatter.nvim/issues/260#issuecomment-1676039290
-			function()
-				local defined_types = require("formatter.config").values.filetype
-				if defined_types[vim.bo.filetype] ~= nil then
-					return nil
-				end
-				vim.lsp.buf.format({ async = true })
-			end,
-		},
-	},
-})
+-- local formatter = require("formatter")
+-- formatter.setup({
+-- 	filetype = {
+-- 		javascript = {
+-- 			require("formatter.filetypes.javascript").prettier,
+-- 		},
+-- 		javascriptreact = {
+-- 			require("formatter.filetypes.javascriptreact").prettier,
+-- 		},
+-- 		typescript = {
+-- 			require("formatter.filetypes.typescript").prettier,
+-- 		},
+-- 		typescriptreact = {
+-- 			require("formatter.filetypes.typescriptreact").prettier,
+-- 		},
+-- 		vue = {
+-- 			require("formatter.filetypes.vue").prettier,
+-- 		},
+-- 		css = {
+-- 			require("formatter.defaults").prettier,
+-- 		},
+-- 		lua = {
+-- 			require("formatter.filetypes.lua").stylua,
+-- 		},
+-- 		-- 上記以外
+-- 		["*"] = {
+-- 			require("formatter.filetypes.any").remove_trailing_whitespace,
+-- 			-- https://github.com/mhartington/formatter.nvim/issues/260#issuecomment-1676039290
+-- 			function()
+-- 				local defined_types = require("formatter.config").values.filetype
+-- 				if defined_types[vim.bo.filetype] ~= nil then
+-- 					return nil
+-- 				end
+-- 				vim.lsp.buf.format({ async = true })
+-- 			end,
+-- 		},
+-- 	},
+-- })
 
 -- 変数情報を表示
 -- vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -157,7 +160,6 @@ vim.keymap.set("n", "ga", "<cmd>Lspsaga code_action<CR>")
 vim.keymap.set("n", "gn", "<cmd>Lspsaga rename<CR>")
 -- コードを整形
 -- vim.keymap.set("n", "gf", ":lua require(\"lint\").try_lint()<CR>")
-vim.keymap.set("n", "<leader>gf", "<cmd>Format<CR>")
 -- 変数／関数の一覧を表示
 vim.keymap.set("n", "V", "<cmd>Lspsaga finder<CR>")
 -- ターミナルを開く/閉じる

@@ -33,7 +33,7 @@ mason_lspconfig.setup_handlers({
 			end
 		end
 		-- if server_name == "volar" then
-		-- 	server_config.filetypes = { "typescript", "javascript", "vue", "json" }
+		-- 	server_config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 		-- end
 		-- if server_name == "tsserver" then
 		-- 	server_config.root_dir = lsp_config.util.root_pattern("package.json")

@@ -1,7 +1,6 @@
-
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
+     eval (/opt/homebrew/bin/brew shellenv)
 end
 
 # nvimをvimで起動する
@@ -16,28 +15,36 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 # rbenvの設定
 eval "$(rbenv init -)"
 
-# ctrl+rで履歴を検索
-function fish_user_key_bindings
-  bind \cr 'peco_select_history (commandline -b)'
-end
-
 # インクリメンタルサーチ
 set GHQ_SELECTOR peco
 
 set -Ux FZF_DEFAULT_OPTS "--layout=reverse"
 
 function ghq-fzf
-  set src (ghq list | fzf --preview "ls -laTp (ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
-  if test -n "$src"
-    cd (ghq root)/$src  
-    commandline -f execute
-  end
+    set root (ghq root)
+    set repo (ghq list | fzf --preview="ls -AF --color=always $root/{1}")
+    set dir "$root/$repo"
+    if test -n "$dir"
+        cd "$dir"
+        commandline -f execute
+    end
 end
 # ctrl+]でghqでcloneしたリポジトリを表示
 bind \c] ghq-fzf
 
+function fzf-switch-branch
+    set -l branchname (
+        env FZF_DEFAULT_COMMAND='git --no-pager branch -a | grep -v HEAD | sed -e "s/^.* //g"' \
+            fzf --height 70% --prompt "BRANCH NAME> " \
+                --preview "git --no-pager log -20 --color=always {}"
+    )
+    if test -n "$branchname"
+        git switch (echo "$branchname"| sed "s#remotes/[^/]*/##")
+        commandline -f execute
+    end
+end
 # ctrl+bで最近のブランチを表示
-bind \cb fzf_git_recent_branch
+bind \cb fzf-switch-branch
 
 # cd後にlsで表示
 function cd

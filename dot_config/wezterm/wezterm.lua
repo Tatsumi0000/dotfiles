@@ -8,7 +8,6 @@ if wezterm.config_builder then
 end
 
 config = {
-	default_prog = { "/opt/homebrew/bin/fish", "-l" },
 	-- カラースキーム
 	color_scheme = "Tokyo Night Storm",
 	font = wezterm.font_with_fallback({

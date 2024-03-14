@@ -35,9 +35,23 @@ mason_lspconfig.setup_handlers({
 		-- if server_name == "volar" then
 		-- 	server_config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 		-- end
-		-- if server_name == "tsserver" then
-		-- 	server_config.root_dir = lsp_config.util.root_pattern("package.json")
-		-- end
+		if server_name == "tsserver" then
+			server_config.init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = "/opt/homebrew/lib/node_modules/@vue/typescript-plugin",
+						languages = { "javascript", "typescript", "vue" },
+					},
+				},
+			}
+			server_config.filetypes = {
+				"javascript",
+				"typescript",
+				"vue",
+			}
+			server_config.root_dir = lsp_config.util.root_pattern("package.json")
+		end
 		server_config.on_attach = on_attach
 		lsp_config[server_name].setup(server_config)
 		-- https://github.com/apple/sourcekit-lsp/blob/main/Editors/README.md#neovim-08-and-above

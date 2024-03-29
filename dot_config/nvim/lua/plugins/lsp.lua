@@ -60,9 +60,9 @@ mason_lspconfig.setup_handlers({
 			cmd = { "sourcekit-lsp" },
 			filetypes = { "swift" },
 			-- プロジェクトのルートを.gitで判断
-			root_dir = function(fname)
-				return lsp_config.util.find_git_ancestor(fname)
-			end,
+			-- root_dir = function(fname)
+			-- 	return lsp_config.util.find_git_ancestor(fname)
+			-- end,
 		})
 	end,
 })

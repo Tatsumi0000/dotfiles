@@ -169,6 +169,8 @@ local plugins = {
 	{ "github/copilot.vim" },
 	-- 検索したときにヒット数を表示
 	{ "kevinhwang91/nvim-hlslens" },
+  -- ファイルからGitHubを開く
+  { "almo7aya/openingh.nvim" },
 }
 
 -- lazyたちの設定

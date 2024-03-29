@@ -1,0 +1,13 @@
+[alias]
+	      lg = log --graph --decorate --abbrev-commit --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)\n  %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+        sw = switch
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = Tatsumi0000
+	email = 19218690+Tatsumi0000@users.noreply.github.com
+[ghq]
+	root = ~/src

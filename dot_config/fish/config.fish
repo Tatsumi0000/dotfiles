@@ -6,6 +6,7 @@ end
 # nvimをvimで起動する
 alias vim='nvim'
 alias k='kubectl'
+alias kz='kustomize'
 
 # Go言語の設定
 set -x GOPATH $HOME/dev

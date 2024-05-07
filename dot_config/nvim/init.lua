@@ -171,7 +171,13 @@ local plugins = {
 	{ "kevinhwang91/nvim-hlslens" },
 	-- ファイルからGitHubを開く
 	{ "almo7aya/openingh.nvim" },
-  { "shellRaining/hlchunk.nvim" },
+	{
+		"shellRaining/hlchunk.nvim",
+		event = { "UIEnter" },
+		config = function()
+			require("hlchunk").setup({})
+		end,
+	},
 }
 
 -- lazyたちの設定

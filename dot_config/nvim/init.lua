@@ -65,7 +65,15 @@ local plugins = {
 	-- 括弧を虹色
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	-- インデントを見やすく
-	{ "nathanaelkane/vim-indent-guides" },
+	-- { "nathanaelkane/vim-indent-guides" },
+	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		config = function()
+			require("mini.indentscope").setup()
+		end,
+	},
 	-- 自動括弧補完
 	{ "windwp/nvim-autopairs" },
 	{ "windwp/nvim-ts-autotag" },
@@ -133,7 +141,7 @@ local plugins = {
 	-- buffersをタブみたいに表示する
 	{
 		"akinsho/bufferline.nvim",
-		version = "*",
+		-- version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("bufferline").setup({
@@ -171,13 +179,6 @@ local plugins = {
 	{ "kevinhwang91/nvim-hlslens" },
 	-- ファイルからGitHubを開く
 	{ "almo7aya/openingh.nvim" },
-	{
-		"shellRaining/hlchunk.nvim",
-		event = { "UIEnter" },
-		config = function()
-			require("hlchunk").setup({})
-		end,
-	},
 }
 
 -- lazyたちの設定

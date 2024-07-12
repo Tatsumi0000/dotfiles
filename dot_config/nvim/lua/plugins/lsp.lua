@@ -32,9 +32,6 @@ mason_lspconfig.setup_handlers({
 				})
 			end
 		end
-		-- if server_name == "volar" then
-		-- 	server_config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
-		-- end
 		if server_name == "tsserver" then
 			server_config.init_options = {
 				plugins = {
@@ -56,7 +53,6 @@ mason_lspconfig.setup_handlers({
 		lsp_config[server_name].setup(server_config)
 		-- https://github.com/apple/sourcekit-lsp/blob/main/Editors/README.md#neovim-08-and-above
 		lsp_config.sourcekit.setup({
-
 			cmd = { "sourcekit-lsp" },
 			filetypes = { "swift" },
 			-- プロジェクトのルートを.gitで判断

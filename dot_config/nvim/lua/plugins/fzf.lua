@@ -11,6 +11,11 @@ return {
 						["default"] = require("fzf-lua.actions").file_edit,
 					},
 				},
+				grep = {
+					glob_flag = "--iglob",
+					glob_separator = "%s%-%-",
+					rg_opts = "--column --line-number --no-heading --color=always --smart-case -i",
+				},
 			})
 			local set = vim.keymap.set
 			set("n", "<leader>ff", require("fzf-lua").files, { desc = "Fzf Files" })
@@ -20,7 +25,7 @@ return {
 			set(
 				"n",
 				"<leader>fig",
-        ':lua require"fzf-lua".live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>',
+				':lua require"fzf-lua".live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>',
 				{ desc = "Fzf git grep" }
 			)
 		end,

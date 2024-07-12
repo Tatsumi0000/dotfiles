@@ -30,7 +30,6 @@ local plugins = {
 			},
 		},
 	},
-	-- あいまい検索
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },
@@ -50,9 +49,6 @@ local plugins = {
 	{ "vim-scripts/copypath.vim" },
 	-- 括弧を虹色
 	{ "HiPhish/rainbow-delimiters.nvim" },
-	-- インデントを見やすく
-	-- { "nathanaelkane/vim-indent-guides" },
-	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- 自動括弧補完
 	{ "windwp/nvim-autopairs" },
 	{ "windwp/nvim-ts-autotag" },
@@ -79,10 +75,6 @@ local plugins = {
 	-- tree-sitterのインデントを良い感じに
 	{ "yioneko/nvim-yati", version = "*", dependencies = "nvim-treesitter/nvim-treesitter" },
 	{ "tpope/vim-rails" },
-	-- vimの設定をプロジェクトごとに変えれる
-	{
-		"folke/neoconf.nvim",
-	},
 	-- lspのUIをいい感じに
 	{
 		"nvimdev/lspsaga.nvim",
@@ -107,7 +99,6 @@ local plugins = {
 			})
 		end,
 	},
-
 	{ "fgheng/winbar.nvim" },
 	-- do/endとかのワードをハイライト
 	{

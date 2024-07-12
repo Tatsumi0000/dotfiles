@@ -42,7 +42,7 @@ return {
 		config = function()
 			require("mini.bufremove").setup()
 			local set = vim.keymap.set
-			set("n", "<C-w>", "<Cmd>bdelete<CR>")
+			set("n", "<C-w>w", "<Cmd>bdelete<CR>")
 		end,
 	},
 }

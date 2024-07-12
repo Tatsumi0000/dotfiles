@@ -1,10 +1,15 @@
 require("base")
 local theme = require("plugins/theme")
+local mini = require("plugins/mini")
+local fzf_lua = require("plugins/fzf")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
 	theme,
-
+	-- mini関連のプラグイン
+	mini,
+  -- fzf-lua関連のプラグイン
+  fzf_lua,
 	-- fern関連
 	{ "lambdalisue/fern-git-status.vim" },
 	{
@@ -29,17 +34,6 @@ local plugins = {
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },
-	-- telescope関連
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "0.1.2",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-	},
-	{ "ibhagwan/fzf-lua" },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -67,13 +61,6 @@ local plugins = {
 	-- インデントを見やすく
 	-- { "nathanaelkane/vim-indent-guides" },
 	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		config = function()
-			require("mini.indentscope").setup()
-		end,
-	},
 	-- 自動括弧補完
 	{ "windwp/nvim-autopairs" },
 	{ "windwp/nvim-ts-autotag" },
@@ -214,6 +201,5 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(plugins, lazy_opts)
 require("plugins/appearance")
-require("plugins/telescope")
 require("plugins/lsp")
 require("plugins/gitsigns")

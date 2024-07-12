@@ -11,27 +11,6 @@ mason_lspconfig.setup()
 mason_lspconfig.setup_handlers({
 	function(server_name)
 		local server_config = { capabilities = capabilities }
-		local on_attach = function(client, bufnr)
-			if client.supports_method("textDocument/documentHighlight") then
-				local lsp_document_highlight = vim.api.nvim_create_augroup("lsp_document_highlight", {})
-				-- ハイライトするまでの時間
-				vim.opt.updatetime = 500
-				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-					group = lsp_document_highlight,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.document_highlight()
-					end,
-				})
-				vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-					group = lsp_document_highlight,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.clear_references()
-					end,
-				})
-			end
-		end
 		if server_name == "tsserver" then
 			server_config.init_options = {
 				plugins = {

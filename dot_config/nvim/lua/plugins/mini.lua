@@ -23,4 +23,26 @@ return {
 			require("mini.cursorword").setup()
 		end,
 	},
+	{
+		"echasnovski/mini.comment",
+		version = false,
+		config = function()
+			require("mini.comment").setup({
+				mappings = {
+					comment = "<Leader>/",
+					comment_visual = "<Leader>/",
+					comment_line = "<Leader>//",
+				},
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		version = false,
+		config = function()
+			require("mini.bufremove").setup()
+			local set = vim.keymap.set
+			set("n", "<C-w>", "<Cmd>bdelete<CR>")
+		end,
+	},
 }

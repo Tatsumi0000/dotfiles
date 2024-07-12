@@ -8,8 +8,8 @@ local plugins = {
 	theme,
 	-- mini関連のプラグイン
 	mini,
-  -- fzf-lua関連のプラグイン
-  fzf_lua,
+	-- fzf-lua関連のプラグイン
+	fzf_lua,
 	-- fern関連
 	{ "lambdalisue/fern-git-status.vim" },
 	{
@@ -38,14 +38,6 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	-- コメントアウト
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
-	{ "JoosepAlviste/nvim-ts-context-commentstring" },
 	-- ステータスバーをいい感じに
 	{
 		"nvim-lualine/lualine.nvim",

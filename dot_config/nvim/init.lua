@@ -2,6 +2,8 @@ require("base")
 local theme = require("plugins/theme")
 local mini = require("plugins/mini")
 local fzf_lua = require("plugins/fzf")
+local lsp_signature = require("plugins/lsp_signature")
+local copy_file_path = require("plugins/copy-file-path")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -10,6 +12,8 @@ local plugins = {
 	mini,
 	-- fzf-lua関連のプラグイン
 	fzf_lua,
+  lsp_signature,
+  copy_file_path,
 	-- fern関連
 	{ "lambdalisue/fern-git-status.vim" },
 	{
@@ -45,8 +49,6 @@ local plugins = {
 	-- エディタにgitの差分や行単位の変更を表示
 	{ "lewis6991/gitsigns.nvim" },
 
-	-- ファイルパスをコピー
-	{ "vim-scripts/copypath.vim" },
 	-- 括弧を虹色
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	-- 自動括弧補完

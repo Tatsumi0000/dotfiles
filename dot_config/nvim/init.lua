@@ -4,6 +4,9 @@ local mini = require("plugins/mini")
 local fzf_lua = require("plugins/fzf")
 local lsp_signature = require("plugins/lsp_signature")
 local copy_file_path = require("plugins/copy-file-path")
+local ale = require("plugins/ale")
+local fern = require("plugins/fern")
+local treesitter = require("plugins/treesitter")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -12,35 +15,15 @@ local plugins = {
 	mini,
 	-- fzf-lua関連のプラグイン
 	fzf_lua,
-  lsp_signature,
-  copy_file_path,
-	-- fern関連
-	{ "lambdalisue/fern-git-status.vim" },
-	{
-		"lambdalisue/fern.vim",
-		config = function()
-			-- ctrl + n でfernを開く
-			vim.keymap.set("n", "<C-n>", ":Fern . -reveal=% -drawer -toggle -width=30<CR>")
-			vim.g["fern#default_hidden"] = true -- 隠しファイルを表示
-		end,
-		dependencies = {
-			{ "lambdalisue/nerdfont.vim" },
-			{
-				"lambdalisue/fern-renderer-nerdfont.vim",
-				config = function()
-					-- アイコンフォントを使う
-					vim.g["fern#renderer"] = "nerdfont"
-				end,
-			},
-		},
-	},
+	lsp_signature,
+	copy_file_path,
+	ale,
+	fern,
+	treesitter,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
+
 	-- ステータスバーをいい感じに
 	{
 		"nvim-lualine/lualine.nvim",
@@ -68,14 +51,7 @@ local plugins = {
 	{ "onsails/lspkind.nvim" },
 	{ "mfussenegger/nvim-lint" },
 	{ "mhartington/formatter.nvim" },
-	{
-		"dense-analysis/ale",
-		config = function()
-			require("plugins/ale")
-		end,
-	},
-	-- tree-sitterのインデントを良い感じに
-	{ "yioneko/nvim-yati", version = "*", dependencies = "nvim-treesitter/nvim-treesitter" },
+
 	{ "tpope/vim-rails" },
 	-- lspのUIをいい感じに
 	{
@@ -145,7 +121,6 @@ local plugins = {
 			require("which-key").setup({})
 		end,
 	},
-	{ "RRethy/nvim-treesitter-endwise" },
 	{ "github/copilot.vim" },
 	-- 検索したときにヒット数を表示
 	{ "kevinhwang91/nvim-hlslens" },

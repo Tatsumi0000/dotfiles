@@ -1,12 +1,13 @@
 require("base")
-local theme = require("plugins/theme")
-local mini = require("plugins/mini")
-local fzf_lua = require("plugins/fzf")
-local lsp_signature = require("plugins/lsp_signature")
-local copy_file_path = require("plugins/copy-file-path")
-local ale = require("plugins/ale")
-local fern = require("plugins/fern")
-local treesitter = require("plugins/treesitter")
+local theme = require("plugins.theme")
+local mini = require("plugins.mini")
+local fzf_lua = require("plugins.fzf")
+local lsp_signature = require("plugins.lsp_signature")
+local copy_file_path = require("plugins.copy-file-path")
+local ale = require("plugins.ale")
+local fern = require("plugins.fern")
+local treesitter = require("plugins.treesitter")
+local bufferline = require("plugins.bufferline")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -20,6 +21,7 @@ local plugins = {
 	ale,
 	fern,
 	treesitter,
+	bufferline,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },
@@ -86,32 +88,6 @@ local plugins = {
 			vim.g.matchup_matchparen_offscreen = { method = "ui" }
 		end,
 	},
-	-- buffersをタブみたいに表示する
-	{
-		"akinsho/bufferline.nvim",
-		-- version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					mode = "buffers",
-					separator_style = "slant",
-				},
-				highlights = {
-					separator = {
-						guifg = "#15161E",
-					},
-					separator_visible = {
-						guifg = "#15161E",
-					},
-					separator_selected = {
-						guifg = "#15161E",
-					},
-				},
-			})
-		end,
-	},
-
 	-- キーマップの入力途中でどのキーが何をするのか表示
 	{
 		"folke/which-key.nvim",

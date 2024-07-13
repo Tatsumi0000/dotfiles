@@ -8,6 +8,7 @@ local ale = require("plugins.ale")
 local fern = require("plugins.fern")
 local treesitter = require("plugins.treesitter")
 local bufferline = require("plugins.bufferline")
+local noice = require("plugins.noice")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -22,6 +23,7 @@ local plugins = {
 	fern,
 	treesitter,
 	bufferline,
+	noice,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },

@@ -34,8 +34,8 @@ vim.keymap.set("i", "<C-k>", "copilot#Previous()", { expr = true, silent = true 
 vim.keymap.set("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true, replace_keycodes = false })
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {}) -- タブを次へ
 vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {}) -- タブを前へ
-vim.keymap.set("n", "<Leader>n", "nzz") -- 検索時にハイライトを中央に表示(進む)
-vim.keymap.set("n", "<Leader>N", "Nzz") -- 検索時にハイライトを中央に表示(戻る)
+vim.keymap.set("n", "n", "nzz") -- 検索時にハイライトを中央に表示(進む)
+vim.keymap.set("n", "N", "Nzz") -- 検索時にハイライトを中央に表示(戻る)
 vim.opt.swapfile = false -- swapファイルを作らない
 -- undoの永続化
 if vim.fn.has("persistent_undo") == 1 then

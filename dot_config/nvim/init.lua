@@ -9,6 +9,7 @@ local fern = require("plugins.fern")
 local treesitter = require("plugins.treesitter")
 local bufferline = require("plugins.bufferline")
 local neotest = require("plugins.neotest")
+local github_copilot = require("plugins.copilot")
 local nvim_config_local = require("plugins.nvim-config-local")
 -- プラグインたちを追加
 local plugins = {
@@ -25,6 +26,7 @@ local plugins = {
 	treesitter,
 	bufferline,
 	neotest,
+  github_copilot,
 	nvim_config_local,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
@@ -101,7 +103,6 @@ local plugins = {
 			require("which-key").setup({})
 		end,
 	},
-	{ "github/copilot.vim" },
 	-- 検索したときにヒット数を表示
 	{ "kevinhwang91/nvim-hlslens" },
 	-- ファイルからGitHubを開く

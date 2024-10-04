@@ -10,6 +10,7 @@ local treesitter = require("plugins.treesitter")
 local bufferline = require("plugins.bufferline")
 local neotest = require("plugins.neotest")
 local github_copilot = require("plugins.copilot")
+local precognition = require("plugins.precognition")
 local nvim_config_local = require("plugins.nvim-config-local")
 -- プラグインたちを追加
 local plugins = {
@@ -27,6 +28,7 @@ local plugins = {
 	bufferline,
 	neotest,
   github_copilot,
+  precognition,
 	nvim_config_local,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける

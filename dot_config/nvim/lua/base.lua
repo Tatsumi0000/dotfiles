@@ -8,6 +8,8 @@ opt.encoding = "utf-8"
 opt.fileencodings = "utf-8,iso-2022-jp,ucs-bom,sjis,euc-jp,cp932,default,latin1"
 -- modifableをONにする
 opt.modifiable = true
+-- ファイルによってタブ幅を自動で変える
+opt.smartindent = true
 opt.shiftwidth = 0
 opt.softtabstop = -1
 opt.tabstop = 2

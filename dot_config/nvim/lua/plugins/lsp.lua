@@ -193,9 +193,10 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
-	-- indent = {
-	-- 	enable = true,
-	-- },
+	indent = {
+		enable = true,
+		additional_vim_regex_highlighting = { "ruby" },
+	},
 	autotag = {
 		enable = true,
 	},
@@ -211,7 +212,7 @@ require("lint").linters_by_ft = {
 	jsx = { "eslint" },
 	tsx = { "eslint" },
 	json = { "eslint" },
-  ruby = { "rubocop" },
+	ruby = { "rubocop" },
 	sql = { "sqlfluff" },
 	vue = { "eslint" },
 }

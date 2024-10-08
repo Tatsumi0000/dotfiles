@@ -195,7 +195,6 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
-		additional_vim_regex_highlighting = { "ruby" },
 	},
 	autotag = {
 		enable = true,

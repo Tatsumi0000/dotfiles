@@ -191,7 +191,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = false,
+		additional_vim_regex_highlighting = true,
 	},
 	indent = {
 		enable = true,
@@ -203,6 +203,8 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	},
 })
+-- Rubyでドットを入力するとインデントがおかしくなるので設定
+vim.cmd('autocmd FileType ruby setlocal indentkeys-=.')
 -- nvim-lintの設定
 -- lintの実行結果をLSPに変換して教えてくれるやつ
 require("lint").linters_by_ft = {

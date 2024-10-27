@@ -123,9 +123,6 @@ vim.keymap.set("n", "gn", "<cmd>Lspsaga rename<CR>")
 -- vim.keymap.set("n", "gf", ":lua require(\"lint\").try_lint()<CR>")
 -- 変数／関数の一覧を表示
 vim.keymap.set("n", "V", "<cmd>Lspsaga finder<CR>")
--- ターミナルを開く/閉じる
-vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-vim.keymap.set("t", "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 
 -- 括弧を自動補完
 require("nvim-autopairs").setup({})

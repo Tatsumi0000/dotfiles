@@ -97,45 +97,6 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
--- formatterの設定
--- local formatter = require("formatter")
--- formatter.setup({
--- 	filetype = {
--- 		javascript = {
--- 			require("formatter.filetypes.javascript").prettier,
--- 		},
--- 		javascriptreact = {
--- 			require("formatter.filetypes.javascriptreact").prettier,
--- 		},
--- 		typescript = {
--- 			require("formatter.filetypes.typescript").prettier,
--- 		},
--- 		typescriptreact = {
--- 			require("formatter.filetypes.typescriptreact").prettier,
--- 		},
--- 		vue = {
--- 			require("formatter.filetypes.vue").prettier,
--- 		},
--- 		css = {
--- 			require("formatter.defaults").prettier,
--- 		},
--- 		lua = {
--- 			require("formatter.filetypes.lua").stylua,
--- 		},
--- 		-- 上記以外
--- 		["*"] = {
--- 			require("formatter.filetypes.any").remove_trailing_whitespace,
--- 			-- https://github.com/mhartington/formatter.nvim/issues/260#issuecomment-1676039290
--- 			function()
--- 				local defined_types = require("formatter.config").values.filetype
--- 				if defined_types[vim.bo.filetype] ~= nil then
--- 					return nil
--- 				end
--- 				vim.lsp.buf.format({ async = true })
--- 			end,
--- 		},
--- 	},
--- })
 
 -- 変数情報を表示
 -- vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -165,6 +126,7 @@ vim.keymap.set("n", "V", "<cmd>Lspsaga finder<CR>")
 -- ターミナルを開く/閉じる
 vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 vim.keymap.set("t", "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+
 -- 括弧を自動補完
 require("nvim-autopairs").setup({})
 require("nvim-treesitter.configs").setup({

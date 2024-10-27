@@ -27,6 +27,17 @@ mason_lspconfig.setup_handlers({
 				"vue",
 			}
 			server_config.root_dir = lsp_config.util.root_pattern("package.json")
+		elseif server_name == "solargraph" then
+			server_config = {
+				filetypes = { "ruby" },
+				root_dir = lsp_config.util.root_pattern("Gemfile"),
+				cmd = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", "stdio" },
+				settings = {
+					solargraph = {
+						diagnostics = true,
+					},
+				},
+			}
 		end
 		server_config.on_attach = on_attach
 		lsp_config[server_name].setup(server_config)
@@ -204,7 +215,7 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 -- Rubyでドットを入力するとインデントがおかしくなるので設定
-vim.cmd('autocmd FileType ruby setlocal indentkeys-=.')
+vim.cmd("autocmd FileType ruby setlocal indentkeys-=.")
 -- nvim-lintの設定
 -- lintの実行結果をLSPに変換して教えてくれるやつ
 require("lint").linters_by_ft = {

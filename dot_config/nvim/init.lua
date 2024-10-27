@@ -4,7 +4,7 @@ local mini = require("plugins.mini")
 local fzf_lua = require("plugins.fzf")
 local lsp_signature = require("plugins.lsp_signature")
 local copy_file_path = require("plugins.copy-file-path")
-local ale = require("plugins.ale")
+local confirm = require"plugins.confirm"
 local fern = require("plugins.fern")
 local treesitter = require("plugins.treesitter")
 local bufferline = require("plugins.bufferline")
@@ -22,7 +22,7 @@ local plugins = {
 	fzf_lua,
 	lsp_signature,
 	copy_file_path,
-	ale,
+  confirm,
 	fern,
 	treesitter,
 	bufferline,

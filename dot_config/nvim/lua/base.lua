@@ -47,4 +47,5 @@ end
 vim.keymap.set("i", "jj", "<Esc>:<C-u>w<CR>", { silent = true }) -- jjで保存
 
 vim.g.mapleader = " " -- leaderキーをSpaceに割当
+vim.g.maplocalleader = ','
 vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true }) -- スペース+aで全選択

@@ -52,6 +52,10 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 })
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	-- insertモード時にもエラーを更新
+	update_in_insert = true,
+})
 -- vim.lsp.set_log_level("debug")
 
 local lspkind = require("lspkind")
@@ -186,6 +190,7 @@ require("lint").linters_by_ft = {
 	ruby = { "rubocop" },
 	sql = { "sqlfluff" },
 	vue = { "eslint" },
+	--go = { "golangcilint" },
 }
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()

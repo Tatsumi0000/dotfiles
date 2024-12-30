@@ -4,7 +4,7 @@ local mini = require("plugins.mini")
 local fzf_lua = require("plugins.fzf")
 local lsp_signature = require("plugins.lsp_signature")
 local copy_file_path = require("plugins.copy-file-path")
-local confirm = require"plugins.confirm"
+local confirm = require("plugins.confirm")
 local fern = require("plugins.fern")
 local treesitter = require("plugins.treesitter")
 local bufferline = require("plugins.bufferline")
@@ -13,6 +13,8 @@ local github_copilot = require("plugins.copilot")
 local toggleterm = require("plugins.toggleterm")
 local precognition = require("plugins.precognition")
 local nvim_config_local = require("plugins.nvim-config-local")
+local fidget = require("plugins.fidget")
+local go_nvim = require("plugins.go_nvim")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -23,15 +25,17 @@ local plugins = {
 	fzf_lua,
 	lsp_signature,
 	copy_file_path,
-  confirm,
+	confirm,
 	fern,
 	treesitter,
 	bufferline,
 	neotest,
-  github_copilot,
-  toggleterm,
-  precognition,
+	github_copilot,
+	toggleterm,
+	precognition,
 	nvim_config_local,
+	fidget,
+	--	go_nvim,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
 	{ "kyazdani42/nvim-web-devicons" },

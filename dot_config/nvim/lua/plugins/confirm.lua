@@ -25,6 +25,7 @@ return {
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			vue = { "prettierd", "prettier", stop_after_first = true },
 			ruby = { "rubocop" },
+			go = { "goimports", "gofmt" },
 		},
 		-- Set default options
 		-- default_format_opts = {

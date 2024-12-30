@@ -1,3 +1,4 @@
 .DS_Store
 .solargraph.yml
 .idea
+.yardoc/**

@@ -29,6 +29,7 @@ config = {
 	keys = {
 		{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
 		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 		{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },

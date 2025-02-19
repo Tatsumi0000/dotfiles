@@ -1,0 +1,32 @@
+" beep音を鳴らさない
+set visualbell
+" leaderキーをスペース
+let mapleader = ' '
+" ffで検索窓を開く
+nmap <leader>ff <Action>(SearchEverywhere)
+nmap <leader><C-r> <Action>()
+" tabキーでタブ切り替え
+nmap <S-Tab> <Action>(PreviousTab)
+imap <Tab> <Action>(NextTab)
+" jjでEsc扱いにする
+imap jj <Esc>
+" Jで定義ジャンプ
+nnoremap J <C-]>
+" 検索機能をIntellijに寄せる
+nnoremap / :<C-u>action Find<CR>
+" Ctrl rでビルド
+nnoremap <C-r> :action Run<CR>
+
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+

@@ -4,7 +4,6 @@ set visualbell
 let mapleader = ' '
 " ffで検索窓を開く
 nmap <leader>ff <Action>(SearchEverywhere)
-nmap <leader><C-r> <Action>()
 " tabキーでタブ切り替え
 nmap <S-Tab> <Action>(PreviousTab)
 imap <Tab> <Action>(NextTab)
@@ -13,7 +12,7 @@ imap jj <Esc>
 " Jで定義ジャンプ
 nnoremap J :action GotoDeclaration<CR>
 " 検索機能をIntellijに寄せる
-nnoremap / :<C-u>action Find<CR>
+nnoremap / :action Find<CR>
 " Ctrl rでビルド
 nnoremap <C-r> :action Run<CR>
 

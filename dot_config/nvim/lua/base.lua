@@ -47,5 +47,13 @@ end
 vim.keymap.set("i", "jj", "<Esc>:<C-u>w<CR>", { silent = true }) -- jjで保存
 
 vim.g.mapleader = " " -- leaderキーをSpaceに割当
-vim.g.maplocalleader = ','
+vim.g.maplocalleader = ","
 vim.keymap.set("n", "<leader>a", "ggVG", { noremap = true }) -- スペース+aで全選択
+-- yankした時にハイライト
+vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#00DCFF" })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 800 })
+	end,
+})

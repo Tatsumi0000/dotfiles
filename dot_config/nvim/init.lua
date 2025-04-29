@@ -1,7 +1,7 @@
 require("base")
 local theme = require("plugins.theme")
 local mini = require("plugins.mini")
-local fzf_lua = require("plugins.fzf")
+-- local fzf_lua = require("plugins.fzf")
 local lsp_signature = require("plugins.lsp_signature")
 local copy_file_path = require("plugins.copy-file-path")
 local confirm = require("plugins.confirm")
@@ -15,6 +15,8 @@ local precognition = require("plugins.precognition")
 local nvim_config_local = require("plugins.nvim-config-local")
 local fidget = require("plugins.fidget")
 local go_nvim = require("plugins.go_nvim")
+local telescope = require("plugins.telescope")
+local nvim_neoclip = require("plugins.nvim-neoclip")
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -22,7 +24,9 @@ local plugins = {
 	-- mini関連のプラグイン
 	mini,
 	-- fzf-lua関連のプラグイン
-	fzf_lua,
+	-- fzf_lua,
+	nvim_neoclip,
+	telescope,
 	lsp_signature,
 	copy_file_path,
 	confirm,

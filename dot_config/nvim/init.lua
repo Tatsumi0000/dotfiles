@@ -17,6 +17,8 @@ local fidget = require("plugins.fidget")
 local go_nvim = require("plugins.go_nvim")
 local telescope = require("plugins.telescope")
 local nvim_neoclip = require("plugins.nvim-neoclip")
+local vim_android = require("plugins.vim_android")
+
 -- プラグインたちを追加
 local plugins = {
 	-- color-scheme
@@ -39,6 +41,7 @@ local plugins = {
 	precognition,
 	nvim_config_local,
 	fidget,
+  vim_android,
 	--	go_nvim,
 	{ "nvim-lua/plenary.nvim" },
 	-- アイコンをつける
@@ -66,8 +69,8 @@ local plugins = {
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/vim-vsnip" },
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
+	{ "williamboman/mason.nvim", version = "^1.0.0" },
+	{ "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
 	{ "onsails/lspkind.nvim" },
 	{ "mfussenegger/nvim-lint" },
 	{ "mhartington/formatter.nvim" },

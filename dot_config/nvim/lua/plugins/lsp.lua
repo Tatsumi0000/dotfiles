@@ -141,7 +141,9 @@ require("nvim-treesitter.configs").setup({
 		"go",
 		"graphql",
 		"html",
+    "java",
 		"javascript",
+    "kotlin",
 		"lua",
 		"markdown",
 		"markdown_inline",
@@ -159,6 +161,7 @@ require("nvim-treesitter.configs").setup({
 		"typescript",
 		"vim",
 		"vue",
+    "xml",
 	},
 	endwise = {
 		enable = true,

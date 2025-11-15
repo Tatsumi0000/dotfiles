@@ -11,6 +11,14 @@ alias kz='kustomize'
 # Go言語の設定
 set -x GOPATH $HOME/dev
 set -x PATH $PATH $GOPATH/bin
+# Androidの設定
+set ANDROID $HOME/Library/Android 
+set ANDROID_HOME $ANDROID/sdk
+set -Ux PATH $ANDROID_HOME/tools $PATH
+set -Ux PATH $ANDROID_HOME/tools/bin $PATH
+set -Ux PATH $ANDROID_HOME/platform-tools $PATH 
+set -Ux PATH $ANDROID_HOME/emulator $PATH
+
 # nodebrewの設定
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 # rbenvの設定

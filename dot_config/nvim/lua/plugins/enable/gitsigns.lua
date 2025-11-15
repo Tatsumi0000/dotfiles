@@ -1,4 +1,9 @@
-require("gitsigns").setup({
+-- エディタにgitの差分や行単位の変更を表示
+return {
+	{
+	"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup({
 	signs = {
 		add = { text = "┃" },
 		change = { text = "┃" },
@@ -64,3 +69,7 @@ vim.keymap.set("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>'
 vim.keymap.set("n", "<leader>td", ":Gitsigns toggle_deleted<CR>")
 vim.keymap.set("n", "<leader>go", ":OpenInGHFileLines<CR>")
 vim.keymap.set("v", "<leader>go", ":OpenInGHFileLines<CR>")
+
+		end
+	}
+}

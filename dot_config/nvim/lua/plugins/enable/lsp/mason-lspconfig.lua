@@ -6,24 +6,24 @@ return {
 		},
 		config = function()
 			local servers = {
-				"dockerls",
 				"eslint",
 				"gopls",
 				"kotlin_language_server",
 				"lua_ls",
-        "ruby_lsp",
+				"ruby_lsp",
 				"rubocop",
+				"solargraph",
 			}
 			local mason_lspconfig = require("mason-lspconfig")
 
-      local mason = require("mason")
-      mason.setup()
-      mason_lspconfig.setup({
+			local mason = require("mason")
+			mason.setup()
+			mason_lspconfig.setup({
 				automatic_enable = true,
 				ensure_installed = servers,
 			})
-      vim.lsp.config("*", {})
-      vim.lsp.enable(servers)
+			vim.lsp.config("*", {})
+			vim.lsp.enable(servers)
 		end,
 	},
 }

@@ -11,7 +11,7 @@ return {
 				"<leader>grc",
 				':lua require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })<CR>'
 			)
-      -- カーソル化の単語を入力しつつ開く
+			-- カーソル化の単語を入力しつつ開く
 			vim.keymap.set(
 				"n",
 				"<leader>grw",

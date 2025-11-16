@@ -31,9 +31,6 @@ local keymap_opts = { noremap = true, silent = true }
 vim.keymap.set("n", "k", "gk", keymap_opts) -- 改行していてもキーで移動できる
 vim.keymap.set("n", "j", "gj", keymap_opts)
 vim.keymap.set("n", "<ESC><ESC>", ":nohlsearch<CR>", keymap_opts) -- ESC連打でハイライトを消す
-vim.keymap.set("i", "<C-j>", "copilot#Next()", { expr = true, silent = true })
-vim.keymap.set("i", "<C-k>", "copilot#Previous()", { expr = true, silent = true })
-vim.keymap.set("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true, replace_keycodes = false })
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {}) -- タブを次へ
 vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {}) -- タブを前へ
 vim.keymap.set("n", "n", "nzz") -- 検索時にハイライトを中央に表示(進む)

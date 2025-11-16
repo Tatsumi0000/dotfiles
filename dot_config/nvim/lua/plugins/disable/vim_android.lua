@@ -5,7 +5,7 @@ return {
 		config = function()
 			local g = vim.g
 
-			g.android_sdk_path = "/Users/tatsumi/Library/Android/sdk"
+			g.android_sdk_path = "~/Library/Android/sdk"
 			g.gradle_daemon = 1
 			g.gradle_show_signs = 0
 			g.gradle_loclist_show = 0

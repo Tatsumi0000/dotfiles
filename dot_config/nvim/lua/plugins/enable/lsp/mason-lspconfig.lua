@@ -8,11 +8,11 @@ return {
 			local servers = {
 				"eslint",
 				"gopls",
-				"kotlin_language_server",
 				"lua_ls",
 				"ruby_lsp",
 				"rubocop",
 				"solargraph",
+        "kotlin_lsp"
 			}
 			local mason_lspconfig = require("mason-lspconfig")
 

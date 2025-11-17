@@ -5,6 +5,8 @@ return {
 		-- version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
+			vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {}) -- タブを次へ
+			vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {}) -- タブを前へ
 			require("bufferline").setup({
 				options = {
 					mode = "buffers",

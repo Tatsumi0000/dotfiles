@@ -7,6 +7,7 @@ end
 alias vim='nvim'
 alias k='kubectl'
 alias kz='kustomize'
+alias dc='docker compose'
 
 # Go言語の設定
 set -x GOPATH $HOME/dev
@@ -65,4 +66,21 @@ end
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH  $PYENV_ROOT/bin $PATH
 pyenv init - | source
+
+# git-wtの設定
+if type -q git-wt
+  git wt --init fish | source
+end
+# 候補から選んで cd する関数（名前をツールと変える）
+function __git_wt_cd
+    set -l target (command git-wt | fzf --header-lines=1 | awk '{print $1}')
+    if test -n "$target"
+        cd $target
+        # cd した後に画面をリフレッシュする（fish用）
+        commandline -f repaint
+    end
+end
+
+# キーバインドの設定 (Ctrl+G)
+bind \cg '__git_wt_cd'
 

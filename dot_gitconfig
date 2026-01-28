@@ -12,3 +12,5 @@
 	email = 19218690+Tatsumi0000@users.noreply.github.com
 [ghq]
 	root = ~/src
+[wt]
+  basedir = .worktrees
